@@ -1,3 +1,15 @@
+<?php 
+	session_start();
+
+	if($_SERVER['QUERY_STRING'] == 'noname'){
+		unset($_SESSION['name']);
+	}
+
+	$name = $_SESSION['name'] ?? 'Guest';
+
+	$gender = $_COOKIE['gender'] ?? 'unknown';
+ ?>
+
 <head>
 	<title>Ninja pizza</title>
 	<!-- Compiled and minified CSS -->
@@ -23,9 +35,11 @@
 <body class="grey lighten-4">
 	<nav class="white z-depth-0">
 		<div class="container">
-			<a href="#" class="brand-logo brand-text">Ninja Pizza</a>
+			<a href="index.php" class="brand-logo brand-text">Ninja Pizza</a>
 			<ul id="nav-mobile" class="right hide-on-small-screens-and-down">
-				<li><a href="Templates/add.php" class="btn brand z-depth-0">Add a pizza</a></li>
+				<li class="grey-text"><?php echo "Hello " . htmlspecialchars($name) ?></li>
+				<li class="grey-text">(<?php echo "Hello " . htmlspecialchars($gender) ?>)</li>
+				<li><a href="add.php" class="btn brand z-depth-0">Add a pizza</a></li>
 
 			</ul>
 		</div>
